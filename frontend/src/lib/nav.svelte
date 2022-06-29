@@ -13,6 +13,7 @@
 
 		position: sticky;
 		top: 0;
+		z-index: 2;
 
 		padding: 0 var(--gap2);
 		background-color: var(--color3);

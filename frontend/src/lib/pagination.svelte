@@ -10,7 +10,6 @@
 	let _value = 1;
 
 	const goto_page = async (p) => {
-		console.log(p);
 		if (p < 1) {
 			p = 1;
 		} else if (p > total_page) {
@@ -28,7 +27,6 @@
 			let init = parseInt($page.url.searchParams.get('page'));
 			value = init;
 			_value = init;
-			console.log(_value);
 		}
 	});
 

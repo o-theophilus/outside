@@ -48,7 +48,6 @@
 			window.scrollTo({ top: 0, behavior: 'smooth' });
 		}
 	};
-	console.log('here');
 </script>
 
 <div class="page">
@@ -75,7 +74,7 @@
 		padding: var(--gap2);
 	}
 
-	@media screen and (min-width: 600px) {
+	@media screen and (min-width: 400px) {
 		.page {
 			grid-template-columns: repeat(2, 1fr);
 		}

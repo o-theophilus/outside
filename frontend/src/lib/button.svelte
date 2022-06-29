@@ -1,8 +1,12 @@
 <script>
+	import SVG from './svg.svelte';
+
 	export let href = '';
 
 	export let name = '';
 	export let tooltip = '';
+	export let icon = '';
+	export let icon_size = 20;
 	export let color = '';
 	export let active = false;
 	let clas = '';
@@ -23,6 +27,7 @@
 		{target}
 		title={tooltip}
 	>
+	<SVG type={icon} size={icon_size} />
 		{name}
 		<slot />
 	</a>
@@ -36,6 +41,7 @@
 		on:click|stopPropagation
 		title={tooltip}
 	>
+	<SVG type={icon} size={icon_size} />
 		{name}
 		<slot />
 	</button>
