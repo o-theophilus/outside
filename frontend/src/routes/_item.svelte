@@ -1,5 +1,5 @@
 <script>
-	import { backend } from './store.js';
+	import { backend } from '$lib/store.js';
 	export let meta;
 </script>
 
@@ -44,7 +44,7 @@
 		display: flex;
 	}
 	section {
-		background-color: gray;
+		/* background-color: gray; */
 		gap: var(--gap2);
 		padding: var(--gap2);
 	}
