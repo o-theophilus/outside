@@ -1,5 +1,5 @@
 <script>
-	import { backend } from '$lib/store.js';
+	import { backend } from './store.js';
 	export let meta;
 </script>
 
