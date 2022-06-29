@@ -2,13 +2,17 @@
 </script>
 
 <nav>
-	<b> Generate Random NFT </b>
+	<b> Outside (Pre-NFT) </b>
 </nav>
 
 <style>
 	nav {
 		display: flex;
 		align-items: center;
+		justify-content: center;
+
+		position: sticky;
+		top: 0;
 
 		padding: 0 var(--gap2);
 		background-color: var(--color3);
