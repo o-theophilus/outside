@@ -1,10 +1,18 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify
 from os import getcwd, listdir, path, mkdir
 import json
 import re
 from random import randrange
 
 bp = Blueprint("api", __name__)
+
+
+@bp.get("/")
+def index():
+    return jsonify({
+        "status": 200,
+        "message": "Welcome"
+    })
 
 
 @bp.get("/generate_meta")
@@ -48,14 +56,13 @@ def generate_meta():
     used = []
     _meta = []
     j = 0
-    while len(_meta) < 1000 - 1:
+    while len(_meta) < 1000:
         i = randrange(0, len(meta))
 
         if i not in used:
             used.append(i)
             j += 1
             meta[i]["id"] = j
-            meta[i]["photo"] = f"{request.host_url}photo/{j}"
             _meta.append(meta[i])
 
     meta = _meta
