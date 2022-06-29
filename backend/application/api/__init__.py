@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify
 from os import getcwd, listdir, path, mkdir
 import json
 import re
-from random import randrange
+from random import randrange, shuffle
 
 bp = Blueprint("api", __name__)
 
@@ -17,13 +17,11 @@ def index():
 
 @bp.get("/generate_meta")
 def generate_meta():
-    asset_path = f"{getcwd()}/assets"
-
-    id = 0
 
     def generate(gender="male"):
-        nonlocal id
-        _meta = []
+        asset_path = f"{getcwd()}/assets"
+        id = 0
+        out_list = []
         for a in [y for y in listdir(f"{asset_path}/{gender}/ethnicity")]:
             for b in [y for y in listdir(f"{asset_path}/{gender}/nose/{a.split('.')[0]}")]:
                 for c in [y for y in listdir(f"{asset_path}/{gender}/eye")]:
@@ -33,7 +31,7 @@ def generate_meta():
                                 for g in [y for y in listdir(f"{asset_path}/{gender}/hair") if not re.search('back', y, re.IGNORECASE)]:
                                     for h in [y for y in listdir(f"{asset_path}/background")]:
                                         id += 1
-                                        _meta.append({
+                                        out_list.append({
                                             "id": id,
                                             "gender": gender,
                                             "ethnicity": a,
@@ -46,33 +44,28 @@ def generate_meta():
                                             "background": h
                                         })
 
-                                        if len(_meta) == 1000:
-                                            return _meta
-        return _meta
+        return out_list
 
-    meta = [*generate("male"), *generate("female")]
-    print("done 1")
+    male = generate("male")
+    female = generate("female")
+    shuffle(male)
+    shuffle(female)
+    male = male[:5000]
+    female = female[:5000]
+    meta = [*male, *female]
+    shuffle(meta)
 
-    used = []
-    _meta = []
     j = 0
-    while len(_meta) < 1000:
-        i = randrange(0, len(meta))
-
-        if i not in used:
-            used.append(i)
-            j += 1
-            meta[i]["id"] = j
-            _meta.append(meta[i])
-
-    meta = _meta
+    for i in meta:
+        j += 1
+        i["id"] = j
 
     output = f"{getcwd()}/static"
     if not path.exists(output):
         mkdir(output)
     with open(f"{output}/meta.json", 'w+', encoding='utf-8') as f:
         json.dump(meta, f, ensure_ascii=False, indent=4)
-    print("done 2")
+    print("done 3")
 
     return jsonify({
         "status": 200,
