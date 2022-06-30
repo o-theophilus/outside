@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify
 from os import getcwd, listdir, path, mkdir
 import json
 import re
-from random import randrange, shuffle
+from random import randrange, shuffle, sample
 
 bp = Blueprint("api", __name__)
 
@@ -46,14 +46,51 @@ def generate_meta():
 
         return out_list
 
-    male = generate("male")
-    female = generate("female")
-    shuffle(male)
-    shuffle(female)
-    male = male[:5000]
-    female = female[:5000]
+    # female = generate("female")
+    # print(len(female))
+    # shuffle(female)
+    # female = female[:5000]
+
+    # male = generate("male")
+    # print(len(male))
+    # shuffle(male)
+    # male = male[:5000]
+
+    # meta = [*male, *female]
+    # shuffle(meta)
+    # meta = female
+
+
+# # ****************************
+#     female = generate("female")
+#     print(len(female))
+#     # shuffle(female)
+#     # female = female[:5000]
+
+#     a = [i for i in range(len(female))]
+#     shuffle(a)
+#     a = a[:5000]
+#     print(len(a))
+
+#     _female = []
+#     for i in a:
+#         _female.append(female[i])
+
+#     meta = _female
+#     print(len(meta))
+# # ****************************
+
+    output = f"{getcwd()}/static"
+
+    with open(f"{output}/male.json") as f:
+        male = json.load(f)
+    with open(f"{output}/female.json") as f:
+        female = json.load(f)
+
     meta = [*male, *female]
     shuffle(meta)
+
+# # ****************************
 
     j = 0
     for i in meta:
