@@ -22,7 +22,7 @@
 
 	section {
 		gap: var(--gap2);
-		background-color: gray;
+		background-color: var(--background);
 		border-radius: var(--brad1);
 
 		padding: var(--gap2);
