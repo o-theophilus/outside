@@ -1,0 +1,14 @@
+# Spacefile Docs: https://go.deta.dev/docs/spacefile/v0
+v: 0
+micros:
+  - name: backend
+    src: ./
+    engine: python3.9
+    primary: true
+    presets:
+      env:
+        - name: SECRET_KEY
+          default: "xIBcw1l54FGIS492lkvKT3BlbkFJTOepENE7wqSbrm9FbNDc"
+    public_routes:
+      - "/nft"
+      - "/photo"

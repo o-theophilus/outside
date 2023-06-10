@@ -5,3 +5,4 @@ __pycache__
 ./meji.db
 meji.db
 *.db
+.space
