@@ -11,4 +11,4 @@ micros:
           default: "xIBcw1l54FGIS492lkvKT3BlbkFJTOepENE7wqSbrm9FbNDc"
     public_routes:
       - "/nft"
-      - "/photo"
+      - "/photo/*"
